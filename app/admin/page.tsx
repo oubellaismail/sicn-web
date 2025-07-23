@@ -32,6 +32,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Link from "next/link"
 import { useCourses } from "@/hooks/use-courses"
 import { useAuth } from "@/hooks/use-auth"
+import { ThreeScene } from "@/components/three-scene"
+import { CyberShield } from "@/components/cyber-shield"
+import { MatrixRain } from "@/components/matrix-rain"
 
 export default function AdminPage() {
   const { isAuthenticated, login, logout } = useAuth()
@@ -245,9 +248,19 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white">
+      <div className="min-h-screen bg-slate-950 text-white relative overflow-hidden">
+        {/* Background 3D Animation */}
+        <div className="absolute inset-0 z-0">
+          <ThreeScene className="w-full h-full opacity-20" />
+        </div>
+
+        {/* Matrix Rain Background */}
+        <div className="absolute inset-0 z-0">
+          <MatrixRain className="w-full h-full opacity-10" />
+        </div>
+
         {/* Navigation */}
-        <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm">
+        <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
@@ -265,6 +278,9 @@ export default function AdminPage() {
                 <Link href="/courses" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
                   Course Materials
                 </Link>
+                <Link href="/contact" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+                  Contact
+                </Link>
                 <Link href="/admin" className="text-cyan-400 font-medium">
                   Admin
                 </Link>
@@ -274,11 +290,12 @@ export default function AdminPage() {
         </nav>
 
         {/* Login Form */}
-        <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4">
-          <Card className="w-full max-w-md bg-slate-900/50 border-slate-700">
+        <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 relative z-10">
+          <Card className="w-full max-w-md bg-slate-900/50 border-slate-700 backdrop-blur-sm">
             <CardHeader className="text-center">
-              <div className="mx-auto p-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full w-fit mb-4 border border-cyan-500/30">
-                <Shield className="h-8 w-8 text-cyan-400" />
+              <div className="mx-auto p-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full w-fit mb-4 border border-cyan-500/30 relative">
+                <CyberShield className="absolute inset-0 w-full h-full opacity-30" />
+                <Shield className="h-8 w-8 text-cyan-400 relative z-10" />
               </div>
               <CardTitle className="text-2xl text-white">Admin Access</CardTitle>
               <CardDescription className="text-slate-400">
@@ -296,7 +313,7 @@ export default function AdminPage() {
                     type="text"
                     value={loginForm.username}
                     onChange={(e) => setLoginForm({ ...loginForm, username: e.target.value })}
-                    className="bg-slate-800 border-slate-600 text-white"
+                    className="bg-slate-800/50 border-slate-600 text-white backdrop-blur-sm"
                     required
                   />
                 </div>
@@ -310,7 +327,7 @@ export default function AdminPage() {
                       type={showPassword ? "text" : "password"}
                       value={loginForm.password}
                       onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
-                      className="bg-slate-800 border-slate-600 text-white pr-10"
+                      className="bg-slate-800/50 border-slate-600 text-white pr-10 backdrop-blur-sm"
                       required
                     />
                     <Button
@@ -331,7 +348,7 @@ export default function AdminPage() {
                   Access Admin Panel
                 </Button>
               </form>
-              <div className="mt-4 p-3 bg-slate-800/50 rounded-lg text-sm text-slate-400 border border-slate-700">
+              <div className="mt-4 p-3 bg-slate-800/50 rounded-lg text-sm text-slate-400 border border-slate-700 backdrop-blur-sm">
                 <p className="font-medium mb-1 text-cyan-400">Demo credentials:</p>
                 <p>Username: admin</p>
                 <p>Password: cybersec2024</p>
@@ -339,14 +356,76 @@ export default function AdminPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Footer */}
+        <footer className="bg-slate-950/80 border-t border-slate-800 py-12 mt-16 backdrop-blur-sm relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="md:col-span-2">
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="p-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded">
+                    <Shield className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                    Cybersecurity Program
+                  </span>
+                </div>
+                <p className="text-slate-400 mb-4">Forging the digital guardians of tomorrow</p>
+                <div className="text-sm text-slate-500">
+                  <p>© 2024 Cybersecurity Program. All rights reserved.</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+                <ul className="space-y-2 text-slate-400">
+                  <li>
+                    <Link href="/" className="hover:text-cyan-400 transition-colors">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/courses" className="hover:text-cyan-400 transition-colors">
+                      Course Materials
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#faq" className="hover:text-cyan-400 transition-colors">
+                      FAQ
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#contact" className="hover:text-cyan-400 transition-colors">
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-white font-semibold mb-4">Contact Info</h3>
+                <div className="space-y-2 text-slate-400 text-sm">
+                  <p>📍 123 Cyber Street, Tech City</p>
+                  <p>📞 +1 (555) 123-4567</p>
+                  <p>✉️ info@cybersecprogram.edu</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen bg-slate-950 text-white relative overflow-hidden">
+      {/* Background 3D Animation */}
+      <div className="absolute inset-0 z-0">
+        <ThreeScene className="w-full h-full opacity-10" />
+      </div>
+
       {/* Navigation */}
-      <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm">
+      <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
@@ -364,6 +443,9 @@ export default function AdminPage() {
               <Link href="/courses" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
                 Course Materials
               </Link>
+              <Link href="/contact" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+                Contact
+              </Link>
               <span className="text-cyan-400 font-medium">Admin</span>
               <Button
                 variant="outline"
@@ -378,13 +460,18 @@ export default function AdminPage() {
       </nav>
 
       {/* Admin Panel */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Admin Panel
-            </h1>
-            <p className="text-slate-400 mt-2">Manage course materials and semester structure</p>
+          <div className="flex items-center space-x-4">
+            <div className="relative">
+              <CyberShield className="w-16 h-16 opacity-60" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Admin Panel
+              </h1>
+              <p className="text-slate-400 mt-2">Manage course materials and semester structure</p>
+            </div>
           </div>
 
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -424,7 +511,7 @@ export default function AdminPage() {
                 Add Course
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px] bg-slate-900 border-slate-700 text-white">
+            <DialogContent className="sm:max-w-[600px] bg-slate-900/95 border-slate-700 text-white backdrop-blur-sm">
               <DialogHeader>
                 <DialogTitle className="text-white">{editingCourse ? "Edit Course" : "Add New Course"}</DialogTitle>
                 <DialogDescription className="text-slate-400">
@@ -444,7 +531,7 @@ export default function AdminPage() {
                         value={courseForm.semesterNumber}
                         onValueChange={(value) => setCourseForm({ ...courseForm, semesterNumber: value })}
                       >
-                        <SelectTrigger className="bg-slate-800 border-slate-600 text-white">
+                        <SelectTrigger className="bg-slate-800/50 border-slate-600 text-white backdrop-blur-sm">
                           <SelectValue placeholder="Select semester" />
                         </SelectTrigger>
                         <SelectContent className="bg-slate-800 border-slate-600">
@@ -465,7 +552,7 @@ export default function AdminPage() {
                         value={courseForm.title}
                         onChange={(e) => setCourseForm({ ...courseForm, title: e.target.value })}
                         placeholder="e.g., Network Security Fundamentals"
-                        className="bg-slate-800 border-slate-600 text-white"
+                        className="bg-slate-800/50 border-slate-600 text-white backdrop-blur-sm"
                         required
                       />
                     </div>
@@ -479,13 +566,13 @@ export default function AdminPage() {
                       value={courseForm.description}
                       onChange={(e) => setCourseForm({ ...courseForm, description: e.target.value })}
                       placeholder="Brief description of the course content..."
-                      className="bg-slate-800 border-slate-600 text-white"
+                      className="bg-slate-800/50 border-slate-600 text-white backdrop-blur-sm"
                       required
                     />
                   </div>
 
                   <Tabs defaultValue="part0" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 bg-slate-800">
+                    <TabsList className="grid w-full grid-cols-2 bg-slate-800/50 backdrop-blur-sm">
                       <TabsTrigger value="part0" className="text-white data-[state=active]:bg-slate-700">
                         Part 1
                       </TabsTrigger>
@@ -502,7 +589,7 @@ export default function AdminPage() {
                             value={part.name}
                             onChange={(e) => updatePartName(partIndex, e.target.value)}
                             placeholder={`e.g., Fundamentals & Theory`}
-                            className="bg-slate-800 border-slate-600 text-white"
+                            className="bg-slate-800/50 border-slate-600 text-white backdrop-blur-sm"
                             required
                           />
                         </div>
@@ -517,7 +604,7 @@ export default function AdminPage() {
                           return (
                             <div
                               key={folderIndex}
-                              className="space-y-3 p-4 bg-slate-800/50 rounded-lg border border-slate-600"
+                              className="space-y-3 p-4 bg-slate-800/30 rounded-lg border border-slate-600 backdrop-blur-sm"
                             >
                               <h4 className="font-medium text-white flex items-center space-x-2">
                                 {folder.type === "lessons" && <BookOpen className="h-4 w-4 text-cyan-400" />}
@@ -537,7 +624,7 @@ export default function AdminPage() {
                                         updateLink(partIndex, folderIndex, linkIndex, "name", e.target.value)
                                       }
                                       placeholder="e.g., Introduction Lesson"
-                                      className="bg-slate-700 border-slate-600 text-white text-sm"
+                                      className="bg-slate-700/50 border-slate-600 text-white text-sm backdrop-blur-sm"
                                       required
                                     />
                                   </div>
@@ -550,7 +637,7 @@ export default function AdminPage() {
                                         updateLink(partIndex, folderIndex, linkIndex, "url", e.target.value)
                                       }
                                       placeholder="https://drive.google.com/..."
-                                      className="bg-slate-700 border-slate-600 text-white text-sm"
+                                      className="bg-slate-700/50 border-slate-600 text-white text-sm backdrop-blur-sm"
                                       required
                                     />
                                   </div>
@@ -606,11 +693,14 @@ export default function AdminPage() {
             const semester = semesters.find((s) => s.number === semesterNum)
             const courseCount = semester?.courses.length || 0
             return (
-              <Card key={semesterNum} className="bg-slate-900/50 border-slate-700">
+              <Card key={semesterNum} className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded border border-cyan-500/30">
-                      <BookOpen className="h-5 w-5 text-cyan-400" />
+                    <div className="p-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded border border-cyan-500/30 relative">
+                      <BookOpen className="h-5 w-5 text-cyan-400 relative z-10" />
+                      <div className="absolute inset-0 opacity-20">
+                        <CyberShield className="w-full h-full" />
+                      </div>
                     </div>
                     <div>
                       <CardTitle className="text-lg text-white">Semester {semesterNum}</CardTitle>
@@ -626,16 +716,21 @@ export default function AdminPage() {
         {/* Course List */}
         <div className="space-y-6">
           {semesters.length === 0 ? (
-            <Card className="bg-slate-900/50 border-slate-700">
+            <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
               <CardContent className="text-center py-12">
-                <Plus className="h-16 w-16 text-slate-600 mx-auto mb-4" />
+                <div className="relative mb-4">
+                  <Plus className="h-16 w-16 text-slate-600 mx-auto relative z-10" />
+                  <div className="absolute inset-0 opacity-20">
+                    <CyberShield className="w-full h-full" />
+                  </div>
+                </div>
                 <h3 className="text-xl font-semibold text-white mb-2">No courses yet</h3>
                 <p className="text-slate-400">Add your first course to get started.</p>
               </CardContent>
             </Card>
           ) : (
             semesters.map((semester) => (
-              <Card key={semester.id} className="bg-slate-900/50 border-slate-700">
+              <Card key={semester.id} className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
                 <CardHeader>
                   <CardTitle className="text-xl text-white flex items-center space-x-2">
                     <BookOpen className="h-5 w-5 text-cyan-400" />
@@ -645,7 +740,7 @@ export default function AdminPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {semester.courses.map((course) => (
-                      <Card key={course.id} className="bg-slate-800/50 border-slate-600">
+                      <Card key={course.id} className="bg-slate-800/30 border-slate-600 backdrop-blur-sm">
                         <CardHeader>
                           <div className="flex justify-between items-start">
                             <div className="flex-1">
@@ -678,7 +773,7 @@ export default function AdminPage() {
                                     <Trash2 className="h-4 w-4" />
                                   </Button>
                                 </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-slate-900 border-slate-700">
+                                <AlertDialogContent className="bg-slate-900/95 border-slate-700 backdrop-blur-sm">
                                   <AlertDialogHeader>
                                     <AlertDialogTitle className="text-white">Delete Course</AlertDialogTitle>
                                     <AlertDialogDescription className="text-slate-400">
@@ -710,6 +805,63 @@ export default function AdminPage() {
           )}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-slate-950/80 border-t border-slate-800 py-12 mt-16 backdrop-blur-sm relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="p-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded">
+                  <Shield className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                  Cybersecurity Program
+                </span>
+              </div>
+              <p className="text-slate-400 mb-4">Forging the digital guardians of tomorrow</p>
+              <div className="text-sm text-slate-500">
+                <p>© 2024 Cybersecurity Program. All rights reserved.</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2 text-slate-400">
+                <li>
+                  <Link href="/" className="hover:text-cyan-400 transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/courses" className="hover:text-cyan-400 transition-colors">
+                    Course Materials
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#faq" className="hover:text-cyan-400 transition-colors">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#contact" className="hover:text-cyan-400 transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-white font-semibold mb-4">Contact Info</h3>
+              <div className="space-y-2 text-slate-400 text-sm">
+                <p>📍 123 Cyber Street, Tech City</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>✉️ info@cybersecprogram.edu</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

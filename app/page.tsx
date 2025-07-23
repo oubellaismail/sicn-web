@@ -1,47 +1,135 @@
-import {
-  Shield,
-  Target,
-  BookOpen,
-  Users,
-  Award,
-  ChevronRight,
-  Terminal,
-  Lock,
-  Zap,
-  Building,
-  Globe,
-  Code,
-  Database,
-  Cloud,
-  Brain,
-} from "lucide-react"
+"use client"
+
+import { Shield, Users, Award, BookOpen, Globe, MapPin, Phone, Mail, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from "next/link"
+import { ThreeScene } from "@/components/three-scene"
+import { CyberShield } from "@/components/cyber-shield"
+import { MatrixRain } from "@/components/matrix-rain"
+import { PartnerSlider } from "@/components/partner-slider"
+import { ContactForm } from "@/components/contact-form"
 
 export default function HomePage() {
+  const coreCompetencies = [
+    {
+      icon: <Shield className="h-8 w-8 text-cyan-400" />,
+      title: "Network Security",
+      description:
+        "Master the fundamentals of securing network infrastructure, implementing firewalls, and monitoring network traffic.",
+    },
+    {
+      icon: <Users className="h-8 w-8 text-purple-400" />,
+      title: "Ethical Hacking",
+      description:
+        "Learn penetration testing, vulnerability assessment, and ethical hacking methodologies to identify security weaknesses.",
+    },
+    {
+      icon: <Award className="h-8 w-8 text-green-400" />,
+      title: "Digital Forensics",
+      description:
+        "Develop skills in investigating cyber crimes, analyzing digital evidence, and conducting forensic examinations.",
+    },
+    {
+      icon: <BookOpen className="h-8 w-8 text-orange-400" />,
+      title: "Cryptography",
+      description: "Understand encryption algorithms, cryptographic protocols, and secure communication systems.",
+    },
+    {
+      icon: <Globe className="h-8 w-8 text-blue-400" />,
+      title: "Incident Response",
+      description:
+        "Learn to respond to security incidents, contain threats, and implement recovery procedures effectively.",
+    },
+    {
+      icon: <Shield className="h-8 w-8 text-red-400" />,
+      title: "Risk Management",
+      description:
+        "Assess security risks, develop mitigation strategies, and implement comprehensive security policies.",
+    },
+  ]
+
+  const careerOpportunities = [
+    "Cybersecurity Analyst",
+    "Information Security Manager",
+    "Penetration Tester",
+    "Security Consultant",
+    "Digital Forensics Investigator",
+    "Chief Information Security Officer (CISO)",
+  ]
+
+  const faqData = [
+    {
+      question: "What are the admission requirements for the cybersecurity program?",
+      answer:
+        "Applicants need a high school diploma or equivalent, basic computer literacy, and a strong interest in cybersecurity. Some programming knowledge is helpful but not required as we cover fundamentals in the curriculum.",
+    },
+    {
+      question: "How long does the program take to complete?",
+      answer:
+        "The program is designed as a 3-year curriculum spanning 6 semesters. Each semester is approximately 4-5 months long, with intensive hands-on training and practical projects.",
+    },
+    {
+      question: "What certifications will I be prepared for after graduation?",
+      answer:
+        "Graduates will be prepared for industry-standard certifications including CompTIA Security+, CEH (Certified Ethical Hacker), CISSP, and other specialized cybersecurity certifications.",
+    },
+    {
+      question: "Are there internship opportunities available?",
+      answer:
+        "Yes, we have partnerships with leading cybersecurity firms and organizations that offer internship opportunities to our students during their final semester and summer breaks.",
+    },
+    {
+      question: "What is the job placement rate for graduates?",
+      answer:
+        "Our program maintains a 95% job placement rate within 6 months of graduation, with graduates working at top cybersecurity firms, government agencies, and Fortune 500 companies.",
+    },
+    {
+      question: "Is financial aid available for the program?",
+      answer:
+        "Yes, we offer various financial aid options including scholarships, grants, and flexible payment plans. Our financial aid office can help you explore all available options.",
+    },
+    {
+      question: "Can I study part-time while working?",
+      answer:
+        "We offer both full-time and part-time study options. Our evening and weekend classes are designed for working professionals who want to transition into cybersecurity.",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-slate-900 text-gray-100">
+    <div className="min-h-screen bg-slate-950 text-white relative overflow-hidden">
+      {/* Background 3D Animation */}
+      <div className="absolute inset-0 z-0">
+        <ThreeScene className="w-full h-full opacity-20" />
+      </div>
+
       {/* Navigation */}
-      <nav className="border-b border-gray-800 bg-gunmetal/80 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
-              <div className="p-1 bg-gradient-to-r from-cyber-cyan to-cyan-400 rounded animate-glow">
-                <Shield className="h-6 w-6 text-slate-900" />
+              <div className="p-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded">
+                <Shield className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-heading font-bold bg-gradient-to-r from-cyber-cyan to-cyan-300 bg-clip-text text-transparent">
-                SICN - ENSA Agadir
+              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                CyberSec Program
               </span>
             </div>
             <div className="flex space-x-6">
-              <Link href="/" className="text-cyber-cyan hover:text-cyan-300 font-medium transition-colors">
+              <Link href="/" className="text-cyan-400 font-medium">
                 Home
               </Link>
-              <Link href="/courses" className="text-gray-400 hover:text-cyber-cyan font-medium transition-colors">
+              <Link href="/courses" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
                 Course Materials
               </Link>
-              <Link href="/admin" className="text-gray-400 hover:text-cyber-cyan font-medium transition-colors">
+              <Link href="/#faq" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+                FAQ
+              </Link>
+              <Link href="/#contact" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+                Contact
+              </Link>
+              <Link href="/admin" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
                 Admin
               </Link>
             </div>
@@ -50,378 +138,95 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gunmetal via-slate-900 to-black"></div>
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%2300F7EF' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-        <div className="max-w-7xl mx-auto text-center relative">
-          <div className="flex justify-center mb-6">
-            <div className="p-6 bg-gradient-to-r from-cyber-cyan/20 to-cyan-400/20 rounded-full border border-cyber-cyan/30 animate-glow">
-              <Shield className="h-20 w-20 text-cyber-cyan" />
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 z-10">
+        <div className="absolute inset-0 z-0">
+          <MatrixRain className="w-full h-full opacity-10" />
+        </div>
+
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              <CyberShield className="w-32 h-32 opacity-80" />
             </div>
           </div>
-          <div className="mb-4">
-            <span className="text-2xl">🎓</span>
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-2">
-              <span className="text-gray-100">Welcome to the</span>
-            </h1>
-            <h1 className="text-4xl md:text-6xl font-heading font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyber-cyan via-cyan-400 to-cyber-purple bg-clip-text text-transparent">
-                Cybersecurity & Digital Trust
-              </span>
-            </h1>
-            <h1 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-gray-100">Program</h1>
-          </div>
-          <div className="mb-6">
-            <span className="text-xl">🔐</span>
-            <p className="text-xl text-cyber-cyan font-semibold mb-2">
-              Engineer's Program in IT Security and Digital Trust (SICN)
-            </p>
-            <p className="text-lg text-gray-400 font-medium">ENSA Agadir</p>
-          </div>
-          <p className="text-lg text-gray-400 mb-8 max-w-4xl mx-auto leading-relaxed">
-            A cutting-edge engineering track designed to prepare future professionals to meet the increasing demands of
-            securing digital systems and infrastructures in a rapidly evolving technological world.
+
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Cybersecurity
+            </span>
+            <br />
+            <span className="text-white">Excellence</span>
+          </h1>
+
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Forge your path as a digital guardian. Our comprehensive cybersecurity program combines cutting-edge theory
+            with hands-on practice to prepare you for the evolving landscape of cyber threats.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              asChild
               size="lg"
-              className="bg-gradient-to-r from-cyber-cyan to-cyan-400 hover:from-cyan-300 hover:to-cyber-cyan text-slate-900 border-0 font-medium shadow-lg hover:shadow-cyber-cyan/25 transition-all duration-300"
+              className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-lg px-8 py-3"
             >
-              <Link href="/courses">
-                <Terminal className="mr-2 h-5 w-5" />
-                Access Course Materials
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
+              Start Your Journey
             </Button>
             <Button
-              variant="outline"
               size="lg"
-              className="border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan/10 bg-transparent font-medium"
+              variant="outline"
+              className="border-slate-600 text-slate-300 hover:bg-slate-800 bg-transparent text-lg px-8 py-3"
             >
-              <Zap className="mr-2 h-4 w-4" />
-              Download Program Modules (PDF)
+              Learn More
             </Button>
           </div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gunmetal/50">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold mb-4">
-              <span className="text-2xl mr-2">🎯</span>
-              <span className="bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                 Our Mission
               </span>
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              We aim to train skilled engineers who can secure the digital future
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              To cultivate the next generation of cybersecurity professionals through innovative education, practical
+              training, and industry partnerships.
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="bg-slate-900/50 border-gray-800 hover:border-cyber-cyan/50 transition-all duration-300 group">
-              <CardHeader>
-                <div className="mx-auto p-3 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full w-fit mb-4 border border-red-500/30">
-                  <Target className="h-8 w-8 text-red-400" />
-                </div>
-                <CardTitle className="text-lg text-gray-100 group-hover:text-cyber-cyan transition-colors text-center font-heading">
-                  Identify & Mitigate Vulnerabilities
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400 text-center">
-                  Master vulnerability assessment and mitigation techniques for IT systems
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-gray-800 hover:border-cyber-cyan/50 transition-all duration-300 group">
-              <CardHeader>
-                <div className="mx-auto p-3 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-full w-fit mb-4 border border-green-500/30">
-                  <Shield className="h-8 w-8 text-green-400" />
-                </div>
-                <CardTitle className="text-lg text-gray-100 group-hover:text-cyber-cyan transition-colors text-center font-heading">
-                  Secure Digital Environments
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400 text-center">
-                  Protect networks, servers, mobile, IoT, and cloud infrastructures
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-gray-800 hover:border-cyber-cyan/50 transition-all duration-300 group">
-              <CardHeader>
-                <div className="mx-auto p-3 bg-gradient-to-r from-cyber-purple/20 to-purple-500/20 rounded-full w-fit mb-4 border border-cyber-purple/30">
-                  <BookOpen className="h-8 w-8 text-cyber-purple" />
-                </div>
-                <CardTitle className="text-lg text-gray-100 group-hover:text-cyber-cyan transition-colors text-center font-heading">
-                  Implement Security Standards
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400 text-center">
-                  Deploy and audit security policies following ISO, NIST frameworks
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-gray-800 hover:border-cyber-cyan/50 transition-all duration-300 group">
-              <CardHeader>
-                <div className="mx-auto p-3 bg-gradient-to-r from-cyber-cyan/20 to-cyan-400/20 rounded-full w-fit mb-4 border border-cyber-cyan/30">
-                  <Users className="h-8 w-8 text-cyber-cyan" />
-                </div>
-                <CardTitle className="text-lg text-gray-100 group-hover:text-cyber-cyan transition-colors text-center font-heading">
-                  Lead Security Projects
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400 text-center">
-                  Manage cybersecurity initiatives and ensure regulatory compliance
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-gray-800 hover:border-cyber-cyan/50 transition-all duration-300 group">
-              <CardHeader>
-                <div className="mx-auto p-3 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full w-fit mb-4 border border-orange-500/30">
-                  <Terminal className="h-8 w-8 text-orange-400" />
-                </div>
-                <CardTitle className="text-lg text-gray-100 group-hover:text-cyber-cyan transition-colors text-center font-heading">
-                  Monitor & Counter Threats
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-400 text-center">
-                  Track evolving threats and design effective countermeasures
-                </CardDescription>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
       {/* Core Competencies */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-heading font-bold mb-6">
-                <span className="text-2xl mr-2">🧠</span>
-                <span className="bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
-                  Core Competencies
-                </span>
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 bg-gradient-to-r from-cyber-cyan/20 to-cyan-400/20 rounded border border-cyber-cyan/30 mt-1">
-                    <Lock className="w-4 h-4 text-cyber-cyan" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-gray-100 text-lg">Information System Security</h3>
-                    <p className="text-gray-400">Network protection and system security fundamentals</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded border border-red-500/30 mt-1">
-                    <Target className="w-4 h-4 text-red-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-gray-100 text-lg">Offensive & Defensive Security</h3>
-                    <p className="text-gray-400">Advanced penetration testing and defense strategies</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 bg-gradient-to-r from-cyber-purple/20 to-purple-500/20 rounded border border-cyber-purple/30 mt-1">
-                    <Cloud className="w-4 h-4 text-cyber-purple" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-gray-100 text-lg">DevSecOps & Cloud Security</h3>
-                    <p className="text-gray-400">Blockchain integration and secure cloud architectures</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded border border-green-500/30 mt-1">
-                    <Code className="w-4 h-4 text-green-400" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-gray-100 text-lg">
-                      Cryptography & Secure Development
-                    </h3>
-                    <p className="text-gray-400">Advanced cryptographic techniques and secure coding practices</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 bg-gradient-to-r from-cyber-cyan/20 to-cyan-400/20 rounded border border-cyber-cyan/30 mt-1">
-                    <Shield className="w-4 h-4 text-cyber-cyan" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-semibold text-gray-100 text-lg">Risk Management & Governance</h3>
-                    <p className="text-gray-400">Security governance and comprehensive risk assessment</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-slate-900 to-gunmetal rounded-2xl p-8 border border-gray-800">
-              <h3 className="text-2xl font-heading font-bold mb-6 text-gray-100">
-                <span className="text-xl mr-2">💼</span>
-                Career Opportunities
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-center space-x-3">
-                  <div className="p-1 bg-cyber-cyan/20 rounded border border-cyber-cyan/30">
-                    <Shield className="h-4 w-4 text-cyber-cyan" />
-                  </div>
-                  <span className="text-gray-400">Cybersecurity Engineer</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="p-1 bg-green-500/20 rounded border border-green-500/30">
-                    <Target className="h-4 w-4 text-green-400" />
-                  </div>
-                  <span className="text-gray-400">Security Analyst or Auditor</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="p-1 bg-cyber-purple/20 rounded border border-cyber-purple/30">
-                    <Terminal className="h-4 w-4 text-cyber-purple" />
-                  </div>
-                  <span className="text-gray-400">Network and Systems Administrator</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="p-1 bg-orange-500/20 rounded border border-orange-500/30">
-                    <Users className="h-4 w-4 text-orange-400" />
-                  </div>
-                  <span className="text-gray-400">IT Risk Manager</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="p-1 bg-blue-500/20 rounded border border-blue-500/30">
-                    <Building className="h-4 w-4 text-blue-400" />
-                  </div>
-                  <span className="text-gray-400">Security Consultant or Architect</span>
-                </li>
-                <li className="flex items-center space-x-3">
-                  <div className="p-1 bg-red-500/20 rounded border border-red-500/30">
-                    <Code className="h-4 w-4 text-red-400" />
-                  </div>
-                  <span className="text-gray-400">DevSecOps Specialist</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Admission & Structure */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gunmetal/50">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold mb-4">
-              <span className="text-2xl mr-2">🏫</span>
-              <span className="bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
-                Admission & Structure
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Core Competencies
               </span>
             </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-slate-900/50 border-gray-800">
-              <CardHeader>
-                <CardTitle className="text-xl text-gray-100 font-heading">Who can apply?</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-cyber-cyan rounded-full mt-2"></div>
-                  <span className="text-gray-400">
-                    Candidates with 2+ years of study in mathematics, computer science, or engineering
-                  </span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
-                  <span className="text-gray-400">
-                    Through competitive application, interview, and academic transcript review
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-gray-800">
-              <CardHeader>
-                <CardTitle className="text-xl text-gray-100 font-heading">Mode of Learning</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-cyber-purple rounded-full mt-2"></div>
-                  <span className="text-gray-400">In-person and hybrid courses</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-orange-400 rounded-full mt-2"></div>
-                  <span className="text-gray-400">Hands-on labs and capstone projects</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
-                  <span className="text-gray-400">Collaboration with industry professionals</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Curriculum */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-heading font-bold mb-4">
-              <span className="text-2xl mr-2">📚</span>
-              <span className="bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
-                What You'll Learn
-              </span>
-            </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              The program is organized over 5 academic semesters, covering key topics
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              Master essential cybersecurity skills through our comprehensive curriculum
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: Code, title: "Programming & Data Structures", desc: "Python, Java", color: "cyber-cyan" },
-              { icon: Terminal, title: "Operating Systems", desc: "Architecture & Administration", color: "green-400" },
-              { icon: Database, title: "Databases", desc: "SQL & NoSQL", color: "cyber-purple" },
-              { icon: Globe, title: "Web/Mobile Development", desc: "Security-focused development", color: "blue-400" },
-              { icon: Cloud, title: "Virtualization & DevOps", desc: "Container security", color: "orange-400" },
-              { icon: Shield, title: "Cloud Computing", desc: "Blockchain Security", color: "cyber-cyan" },
-              {
-                icon: Brain,
-                title: "AI for Cybersecurity",
-                desc: "Machine learning applications",
-                color: "cyber-purple",
-              },
-              { icon: Award, title: "Security Standards", desc: "Auditing & Compliance", color: "yellow-400" },
-            ].map((item, index) => (
-              <Card
-                key={index}
-                className="bg-slate-900/50 border-gray-800 hover:border-cyber-cyan/50 transition-all duration-300"
-              >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+            <div className="absolute inset-0 z-0 opacity-5">
+              <CyberShield className="w-full h-full" />
+            </div>
+
+            {coreCompetencies.map((competency, index) => (
+              <Card key={index} className="bg-slate-900/50 border-slate-700 backdrop-blur-sm relative z-10">
                 <CardHeader>
                   <div className="flex items-center space-x-3">
-                    <div
-                      className={`p-2 bg-gradient-to-r from-${item.color}/20 to-${item.color}/30 rounded border border-${item.color}/30`}
-                    >
-                      <item.icon className={`h-5 w-5 text-${item.color}`} />
-                    </div>
-                    <CardTitle className="text-lg text-gray-100 font-heading">{item.title}</CardTitle>
+                    <div className="p-2 bg-slate-800/50 rounded border border-slate-600">{competency.icon}</div>
+                    <CardTitle className="text-white">{competency.title}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-gray-400">{item.desc}</CardDescription>
+                  <p className="text-slate-400">{competency.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -429,86 +234,296 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Partners */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gunmetal/50">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-heading font-bold mb-6">
-            <span className="text-2xl mr-2">🤝</span>
-            <span className="bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
-              Our Partners
-            </span>
-          </h2>
-          <p className="text-lg text-gray-400 mb-8">
-            The SICN program is backed by strong collaborations with industry leaders
-          </p>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-slate-900/50 border-gray-800">
+      {/* Career Opportunities */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Career Opportunities
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              Launch your career in high-demand cybersecurity roles
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {careerOpportunities.map((career, index) => (
+              <div key={index} className="bg-slate-900/50 border border-slate-700 rounded-lg p-4 backdrop-blur-sm">
+                <div className="flex items-center space-x-3">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                  <span className="text-white font-medium">{career}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Admission Structure */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Program Structure
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              A comprehensive 3-year program designed for cybersecurity excellence
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-100 font-heading">Industry Partners</CardTitle>
+                <CardTitle className="text-cyan-400">Year 1: Foundations</CardTitle>
+                <CardDescription className="text-slate-400">Semesters 1-2</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400 font-mono">IBM, Oracle Labs, Sopra Banking, HPS, OXYLIOM, and more</p>
+                <ul className="space-y-2 text-slate-300">
+                  <li>• Computer Networks Fundamentals</li>
+                  <li>• Operating Systems Security</li>
+                  <li>• Programming for Security</li>
+                  <li>• Cryptography Basics</li>
+                </ul>
               </CardContent>
             </Card>
-            <Card className="bg-slate-900/50 border-gray-800">
+
+            <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle className="text-xl text-gray-100 font-heading">Academic Partners</CardTitle>
+                <CardTitle className="text-purple-400">Year 2: Specialization</CardTitle>
+                <CardDescription className="text-slate-400">Semesters 3-4</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-400 font-mono">INSA France, University of Brest, and others</p>
+                <ul className="space-y-2 text-slate-300">
+                  <li>• Ethical Hacking & Penetration Testing</li>
+                  <li>• Digital Forensics</li>
+                  <li>• Incident Response</li>
+                  <li>• Security Architecture</li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-green-400">Year 3: Mastery</CardTitle>
+                <CardDescription className="text-slate-400">Semesters 5-6</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-slate-300">
+                  <li>• Advanced Threat Analysis</li>
+                  <li>• Security Management</li>
+                  <li>• Capstone Project</li>
+                  <li>• Industry Internship</li>
+                </ul>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-heading font-bold mb-6">
-            <span className="text-2xl mr-2">🚀</span>
-            <span className="bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
-              Your Cybersecurity Journey Starts Here
-            </span>
-          </h2>
-          <p className="text-xl text-gray-400 mb-8">
-            Secure the future. Start your path to becoming a cybersecurity engineer at ENSA Agadir.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              asChild
-              size="lg"
-              className="bg-gradient-to-r from-cyber-cyan to-cyan-400 hover:from-cyan-300 hover:to-cyber-cyan text-slate-900 border-0 font-medium shadow-lg hover:shadow-cyber-cyan/25 transition-all duration-300"
-            >
-              <Link href="/courses">
-                <BookOpen className="mr-2 h-5 w-5" />
-                Explore Course Materials
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-cyber-cyan/50 text-cyber-cyan hover:bg-cyber-cyan/10 bg-transparent font-medium"
-            >
-              <Users className="mr-2 h-4 w-4" />
-              Apply Now
-            </Button>
+      {/* Partners Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Industry Partners
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+              Collaborating with leading cybersecurity organizations to provide real-world experience
+            </p>
+          </div>
+
+          <PartnerSlider />
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Frequently Asked Questions
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300">Get answers to common questions about our cybersecurity program</p>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-4">
+            {faqData.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="bg-slate-900/50 border border-slate-700 rounded-lg px-6 backdrop-blur-sm"
+              >
+                <AccordionTrigger className="text-white hover:text-cyan-400 text-left">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-slate-300 leading-relaxed">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Get In Touch
+              </span>
+            </h2>
+            <p className="text-lg text-slate-300">Ready to start your cybersecurity journey? Contact us today</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-6">Send us a message</h3>
+              <ContactForm />
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <h3 className="text-xl font-semibold text-white mb-6">Contact Information</h3>
+
+              <div className="grid gap-6">
+                <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-2 bg-cyan-500/20 rounded border border-cyan-500/30">
+                        <MapPin className="h-5 w-5 text-cyan-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Visit Us</h4>
+                        <p className="text-slate-400">
+                          123 Cyber Street
+                          <br />
+                          Tech City, TC 12345
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-2 bg-green-500/20 rounded border border-green-500/30">
+                        <Phone className="h-5 w-5 text-green-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Call Us</h4>
+                        <p className="text-slate-400">
+                          +1 (555) 123-4567
+                          <br />
+                          +1 (555) 987-6543
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-2 bg-purple-500/20 rounded border border-purple-500/30">
+                        <Mail className="h-5 w-5 text-purple-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Email Us</h4>
+                        <p className="text-slate-400">
+                          info@cybersecprogram.edu
+                          <br />
+                          admissions@cybersecprogram.edu
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-slate-900/50 border-slate-700 backdrop-blur-sm">
+                  <CardContent className="p-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="p-2 bg-orange-500/20 rounded border border-orange-500/30">
+                        <Clock className="h-5 w-5 text-orange-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-white mb-1">Office Hours</h4>
+                        <p className="text-slate-400">
+                          Monday - Friday: 9:00 AM - 6:00 PM
+                          <br />
+                          Saturday: 10:00 AM - 4:00 PM
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-gray-800 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex justify-center items-center space-x-2 mb-4">
-            <div className="p-1 bg-gradient-to-r from-cyber-cyan to-cyan-400 rounded animate-glow">
-              <Shield className="h-5 w-5 text-slate-900" />
+      <footer className="bg-slate-950/80 border-t border-slate-800 py-12 mt-16 backdrop-blur-sm relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="p-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded">
+                  <Shield className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                  Cybersecurity Program
+                </span>
+              </div>
+              <p className="text-slate-400 mb-4">Forging the digital guardians of tomorrow</p>
+              <div className="text-sm text-slate-500">
+                <p>© 2024 Cybersecurity Program. All rights reserved.</p>
+              </div>
             </div>
-            <span className="text-lg font-heading font-semibold bg-gradient-to-r from-cyber-cyan to-cyan-400 bg-clip-text text-transparent">
-              SICN - ENSA Agadir
-            </span>
+
+            <div>
+              <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2 text-slate-400">
+                <li>
+                  <Link href="/" className="hover:text-cyan-400 transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/courses" className="hover:text-cyan-400 transition-colors">
+                    Course Materials
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#faq" className="hover:text-cyan-400 transition-colors">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#contact" className="hover:text-cyan-400 transition-colors">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-white font-semibold mb-4">Contact Info</h3>
+              <div className="space-y-2 text-slate-400 text-sm">
+                <p>📍 123 Cyber Street, Tech City</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>✉️ info@cybersecprogram.edu</p>
+              </div>
+            </div>
           </div>
-          <p className="text-gray-400">Cybersecurity and Digital Trust Program</p>
         </div>
       </footer>
     </div>
