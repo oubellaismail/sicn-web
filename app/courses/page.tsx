@@ -67,7 +67,7 @@ export default function CoursesPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-slate-800/50 bg-slate-900/60 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
@@ -85,11 +85,8 @@ export default function CoursesPage() {
               <Link href="/courses" className="text-cyan-400 font-medium">
                 Course Materials
               </Link>
-              <Link href="/contact" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
-                Contact
-              </Link>
-              <Link href="/admin" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
-                Admin
+              <Link href="/#faq" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+                FAQ
               </Link>
             </div>
           </div>

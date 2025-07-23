@@ -260,7 +260,7 @@ export default function AdminPage() {
         </div>
 
         {/* Navigation */}
-        <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm relative z-10">
+        <nav className="border-b border-slate-800/50 bg-slate-900/60 backdrop-blur-md relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-2">
@@ -278,11 +278,8 @@ export default function AdminPage() {
                 <Link href="/courses" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
                   Course Materials
                 </Link>
-                <Link href="/contact" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
-                  Contact
-                </Link>
-                <Link href="/admin" className="text-cyan-400 font-medium">
-                  Admin
+                <Link href="/#faq" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
+                  FAQ
                 </Link>
               </div>
             </div>
@@ -425,7 +422,7 @@ export default function AdminPage() {
       </div>
 
       {/* Navigation */}
-      <nav className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm relative z-10">
+      <nav className="border-b border-slate-800/50 bg-slate-900/60 backdrop-blur-md relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
@@ -442,9 +439,6 @@ export default function AdminPage() {
               </Link>
               <Link href="/courses" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
                 Course Materials
-              </Link>
-              <Link href="/contact" className="text-slate-300 hover:text-cyan-400 font-medium transition-colors">
-                Contact
               </Link>
               <span className="text-cyan-400 font-medium">Admin</span>
               <Button
